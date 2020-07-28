@@ -13,6 +13,7 @@
 
         <!-- comment out all but one of below <plugin> configurations to test -->
 
+        <?ignore
         <!-- works with jdk8 -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -31,7 +32,7 @@
               <artifactId>asciidoclet</artifactId>
               <version>1.5.6</version>
             </docletArtifact>
-            <additionalparam>--base-dir "${project.basedir}" --attribute "templatedir=${project.basedir}/src/docs/templates"</additionalparam>
+            <additionalparam>--base-dir "${project.basedir}" --attribute "templatedir=${project.basedir}/src/docs/templates" --attribute "variabletext=This is some text from the pom"</additionalparam>
           </configuration>
         </plugin>
 
@@ -65,9 +66,10 @@
               <artifactId>asciidoclet</artifactId>
               <version>2.0.0</version>
             </docletArtifact>
-            <additionalparam>--base-dir "${project.basedir}" --attribute "templatedir=${project.basedir}/src/docs/templates"</additionalparam>
+            <additionalparam>--base-dir "${project.basedir}" --attribute "templatedir=${project.basedir}/src/docs/templates" --attribute "variabletext=This is some text from the pom"</additionalparam>
           </configuration>
         </plugin>
+        ?>
 
         <!-- no templatedir substitution:
              <script> convert
@@ -98,6 +100,7 @@
             <additionalOptions>
               <additionalOption>--base-dir "${project.basedir}" </additionalOption>
               <additionalOption>--attribute "templatedir=${project.basedir}/src/docs/templates"</additionalOption>
+              <additionalOption>--attribute "variabletext=This is some text from the pom"</additionalOption>
             </additionalOptions>
           </configuration>
         </plugin>
