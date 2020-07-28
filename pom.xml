@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>asciidoclet-test</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <build>
+      <plugins>
+
+        <!-- comment out all but one of below <plugin> configurations to test -->
+
+        <!-- works with jdk8 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+            <additionalJOptions>
+              <additionalJOption>-Xdoclint:all,-html,-accessibility</additionalJOption>
+            </additionalJOptions>
+            <failOnError>false</failOnError>
+            <noqualifier>all</noqualifier>
+            <show>private</show>
+            <doclet>org.asciidoctor.Asciidoclet</doclet>
+            <docletArtifact>
+              <groupId>org.asciidoctor</groupId>
+              <artifactId>asciidoclet</artifactId>
+              <version>1.5.6</version>
+            </docletArtifact>
+            <additionalparam>--base-dir "${project.basedir}" --attribute "templatedir=${project.basedir}/src/docs/templates"</additionalparam>
+          </configuration>
+        </plugin>
+
+        <!-- no templatedir substitution:
+             <script> convert
+             WARNING: dropping line containing reference to missing attribute: templatedir
+
+             MavenReportingException with jdk11:
+             [ERROR] Error while creating javadoc report:
+             Exit code: 1 - javadoc: error - The code being documented uses modules but the packages defined in http://docs.oracle.com/javase/7/docs/api/ are in the unnamed module.
+        -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+            <additionalJOptions>
+              <additionalJOption>-J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-Xdoclint:all,-html,-accessibility</additionalJOption>
+            </additionalJOptions>
+            <failOnError>false</failOnError>
+            <noqualifier>all</noqualifier>
+            <show>private</show>
+            <doclet>org.asciidoctor.asciidoclet.Asciidoclet</doclet>
+            <docletArtifact>
+              <groupId>org.asciidoctor</groupId>
+              <artifactId>asciidoclet</artifactId>
+              <version>2.0.0</version>
+            </docletArtifact>
+            <additionalparam>--base-dir "${project.basedir}" --attribute "templatedir=${project.basedir}/src/docs/templates"</additionalparam>
+          </configuration>
+        </plugin>
+
+        <!-- no templatedir substitution:
+             <script> convert
+             WARNING: dropping line containing reference to missing attribute: templatedir
+        -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <additionalJOptions>
+              <additionalJOption>-J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-Xdoclint:all,-html,-accessibility</additionalJOption>
+            </additionalJOptions>
+            <failOnError>false</failOnError>
+            <noqualifier>all</noqualifier>
+            <show>private</show>
+            <doclet>org.asciidoctor.asciidoclet.Asciidoclet</doclet>
+            <docletArtifact>
+              <groupId>org.asciidoctor</groupId>
+              <artifactId>asciidoclet</artifactId>
+              <version>2.0.0</version>
+            </docletArtifact>
+            <additionalOptions>
+              <additionalOption>--base-dir "${project.basedir}" </additionalOption>
+              <additionalOption>--attribute "templatedir=${project.basedir}/src/docs/templates"</additionalOption>
+            </additionalOptions>
+          </configuration>
+        </plugin>
+      </plugins>
+  </build>
+
+</project>
