@@ -20,6 +20,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.9</version>
           <configuration>
+            <source>8</source>
             <additionalJOptions>
               <additionalJOption>-Xdoclint:all,-html,-accessibility</additionalJOption>
             </additionalJOptions>
@@ -49,6 +50,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.9</version>
           <configuration>
+            <source>11</source>
             <additionalJOptions>
               <additionalJOption>-J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED</additionalJOption>
               <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
@@ -79,6 +81,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.2.0</version>
           <configuration>
+            <source>11</source>
             <additionalJOptions>
               <additionalJOption>-J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED</additionalJOption>
               <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
@@ -114,6 +117,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.2.0</version>
           <configuration>
+            <source>11</source>
             <additionalJOptions>
               <additionalJOption>-J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED</additionalJOption>
               <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
@@ -136,6 +140,7 @@
               --attribute "templatedir=${project.basedir}/src/docs/templates"
               --attribute "variabletext=This is some text from the pom"
             </additionalOptions>
+            <linksource>true</linksource>
           </configuration>
         </plugin>
       </plugins>
