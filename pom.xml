@@ -36,7 +36,7 @@
           </configuration>
         </plugin>
 
-        <!-- no templatedir substitution:
+        <!-- no templatedir/variabletext substitution:
              <script> convert
              WARNING: dropping line containing reference to missing attribute: templatedir
 
@@ -69,9 +69,8 @@
             <additionalparam>--base-dir "${project.basedir}" --attribute "templatedir=${project.basedir}/src/docs/templates" --attribute "variabletext=This is some text from the pom"</additionalparam>
           </configuration>
         </plugin>
-        ?>
 
-        <!-- no templatedir substitution:
+        <!-- no templatedir/variabletext substitution:
              <script> convert
              WARNING: dropping line containing reference to missing attribute: templatedir
         -->
@@ -98,9 +97,44 @@
               <version>2.0.0</version>
             </docletArtifact>
             <additionalOptions>
-              <additionalOption>--base-dir "${project.basedir}" </additionalOption>
+              <additionalOption>--base-dir "${project.basedir}"</additionalOption>
               <additionalOption>--attribute "templatedir=${project.basedir}/src/docs/templates"</additionalOption>
               <additionalOption>--attribute "variabletext=This is some text from the pom"</additionalOption>
+            </additionalOptions>
+          </configuration>
+        </plugin>
+        ?>
+
+        <!-- no templatedir/variabletext substitution:
+             <script> convert
+             WARNING: dropping line containing reference to missing attribute: templatedir
+        -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <additionalJOptions>
+              <additionalJOption>-J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-J--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</additionalJOption>
+              <additionalJOption>-Xdoclint:all,-html,-accessibility</additionalJOption>
+            </additionalJOptions>
+            <failOnError>false</failOnError>
+            <noqualifier>all</noqualifier>
+            <show>private</show>
+            <doclet>org.asciidoctor.asciidoclet.Asciidoclet</doclet>
+            <docletArtifact>
+              <groupId>org.asciidoctor</groupId>
+              <artifactId>asciidoclet</artifactId>
+              <version>2.0.0</version>
+            </docletArtifact>
+            <additionalOptions>
+              --base-dir "${project.basedir}"
+              --attribute "templatedir=${project.basedir}/src/docs/templates"
+              --attribute "variabletext=This is some text from the pom"
             </additionalOptions>
           </configuration>
         </plugin>
